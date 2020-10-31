@@ -54,7 +54,7 @@ print_modname() {
 # 查看文档，了解更多关于Magic Mount如何工作的信息，以及你为什么需要它
 
 # 这是个示例
-REPLACE="
+REPLACE_EXAMPLE="
 /system/app/Youtube
 /system/priv-app/SystemUI
 /system/priv-app/Settings
@@ -90,6 +90,10 @@ set_permissions() {
 
 ##########################################################################################
 # 自定义函数
+on_install() {
+ui_print "- Extracting module files"
+unzip -o "$ZIPFILE" 'system/*' -d $MODPATH >&2
+}
 ##########################################################################################
 
 # 这个文件 (config.sh) 将被安装脚本在 util_functions.sh 之后 source 化(设置为环境变量)
